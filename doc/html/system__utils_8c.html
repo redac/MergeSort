@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet de système d&#39;exploitation 2 : trions ensembles: Référence du fichier src/system_utils.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet de système d&#39;exploitation 2 : trions ensembles
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier system_utils.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementation of usefull function for the system project.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="system__utils_8h_source.html">system_utils.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4855cc2f66d04c8bcebd635f783b8ccc"><td class="memItemLeft" align="right" valign="top"><a id="a4855cc2f66d04c8bcebd635f783b8ccc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a4855cc2f66d04c8bcebd635f783b8ccc">SU_MAXLINESIZE</a>&#160;&#160;&#160;(1024*8)</td></tr>
+<tr class="memdesc:a4855cc2f66d04c8bcebd635f783b8ccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum length (in character) for a file name. <br /></td></tr>
+<tr class="separator:a4855cc2f66d04c8bcebd635f783b8ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a31606fbb4d5c812977b49c3135b8e2da"><td class="memItemLeft" align="right" valign="top"><a id="a31606fbb4d5c812977b49c3135b8e2da"></a>
+typedef struct SU_fileLoad_structure&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileLoad_structure</b></td></tr>
+<tr class="separator:a31606fbb4d5c812977b49c3135b8e2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa326c0ae093eb55f45bd0725470c802b"><td class="memItemLeft" align="right" valign="top"><a id="aa326c0ae093eb55f45bd0725470c802b"></a>
+typedef struct SU_fileSave_structure&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileSave_structure</b></td></tr>
+<tr class="separator:aa326c0ae093eb55f45bd0725470c802b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a3a7d856af4c621514ac10a02646b2740"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a3a7d856af4c621514ac10a02646b2740">SU_getFileNbLine</a> (const char *file)</td></tr>
+<tr class="memdesc:a3a7d856af4c621514ac10a02646b2740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of line of a file.  <a href="system__utils_8c.html#a3a7d856af4c621514ac10a02646b2740">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3a7d856af4c621514ac10a02646b2740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a773e64d16aaffa7a8466308c0537bba0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a773e64d16aaffa7a8466308c0537bba0">SU_splitFile2</a> (const char *source_file, const unsigned long nb_line_per_file, const unsigned long nb_files, const char **file_names)</td></tr>
+<tr class="memdesc:a773e64d16aaffa7a8466308c0537bba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a file in sub files.  <a href="system__utils_8c.html#a773e64d16aaffa7a8466308c0537bba0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a773e64d16aaffa7a8466308c0537bba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df7559e336ff98354b7af71a1e75d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a9df7559e336ff98354b7af71a1e75d80">SU_splitFile</a> (const char *source_file, const unsigned long nb_line_per_file, const unsigned long nb_files, const char *source_file1,...)</td></tr>
+<tr class="memdesc:a9df7559e336ff98354b7af71a1e75d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a file in sub files.  <a href="system__utils_8c.html#a9df7559e336ff98354b7af71a1e75d80">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9df7559e336ff98354b7af71a1e75d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09934576db538d9084049ed612327ad5"><td class="memItemLeft" align="right" valign="top"><a id="a09934576db538d9084049ed612327ad5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileLoad_structureInit</b> (const char *file, SU_fileLoad_structure *fls)</td></tr>
+<tr class="separator:a09934576db538d9084049ed612327ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3e11f6090b7f4d333f3865a8f84005"><td class="memItemLeft" align="right" valign="top"><a id="a8c3e11f6090b7f4d333f3865a8f84005"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileLoad_structureEnd</b> (SU_fileLoad_structure *fls)</td></tr>
+<tr class="separator:a8c3e11f6090b7f4d333f3865a8f84005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e519dcb3568c35881d1b7d2b5ff2554"><td class="memItemLeft" align="right" valign="top"><a id="a4e519dcb3568c35881d1b7d2b5ff2554"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>SU_loadFile_R</b> (SU_fileLoad_structure *fls, int *end_loading)</td></tr>
+<tr class="separator:a4e519dcb3568c35881d1b7d2b5ff2554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cff693748ce864e7db51bc28e38982d"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a5cff693748ce864e7db51bc28e38982d">SU_loadFile</a> (const char *file, int **data)</td></tr>
+<tr class="memdesc:a5cff693748ce864e7db51bc28e38982d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a file of integer (one per line).  <a href="system__utils_8c.html#a5cff693748ce864e7db51bc28e38982d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5cff693748ce864e7db51bc28e38982d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e08bfda3764f448dea3731579fcf68e"><td class="memItemLeft" align="right" valign="top"><a id="a3e08bfda3764f448dea3731579fcf68e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileSave_structureInit</b> (const char *file, SU_fileSave_structure *fss)</td></tr>
+<tr class="separator:a3e08bfda3764f448dea3731579fcf68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d699fe68922c335c4ae01f6a919ece4"><td class="memItemLeft" align="right" valign="top"><a id="a0d699fe68922c335c4ae01f6a919ece4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SU_fileSave_structureEnd</b> (SU_fileSave_structure *fss)</td></tr>
+<tr class="separator:a0d699fe68922c335c4ae01f6a919ece4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67717fbecfa91bb290392602689708f3"><td class="memItemLeft" align="right" valign="top"><a id="a67717fbecfa91bb290392602689708f3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SU_saveFile_R</b> (int value, SU_fileSave_structure *fss)</td></tr>
+<tr class="separator:a67717fbecfa91bb290392602689708f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2929af5c8c7975dab2163c3c633c4656"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a2929af5c8c7975dab2163c3c633c4656">SU_saveFile</a> (const char *file, unsigned long data_size, const int *data)</td></tr>
+<tr class="memdesc:a2929af5c8c7975dab2163c3c633c4656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a file of integer (one per line).  <a href="system__utils_8c.html#a2929af5c8c7975dab2163c3c633c4656">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2929af5c8c7975dab2163c3c633c4656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a273efdb8e0af1dff499d05b8e302e01a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a273efdb8e0af1dff499d05b8e302e01a">SU_randomGeneration</a> (const char *file_target, unsigned long nb_elems)</td></tr>
+<tr class="memdesc:a273efdb8e0af1dff499d05b8e302e01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">fill a file with nb_elems random integers  <a href="system__utils_8c.html#a273efdb8e0af1dff499d05b8e302e01a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a273efdb8e0af1dff499d05b8e302e01a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411a08d168c62b858bfe9067a81b2913"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a411a08d168c62b858bfe9067a81b2913">SU_mergeSortedFiles</a> (const char *source_file1, const char *source_file2, const char *file_target)</td></tr>
+<tr class="memdesc:a411a08d168c62b858bfe9067a81b2913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two sorted files of integers.  <a href="system__utils_8c.html#a411a08d168c62b858bfe9067a81b2913">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a411a08d168c62b858bfe9067a81b2913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0a5dd981390dcdbfd62f697eeeda85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a0f0a5dd981390dcdbfd62f697eeeda85">SU_QSort</a> (unsigned long data_size, int *data)</td></tr>
+<tr class="memdesc:a0f0a5dd981390dcdbfd62f697eeeda85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort of an array of integer with Quick Sort algorithm.  <a href="system__utils_8c.html#a0f0a5dd981390dcdbfd62f697eeeda85">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0f0a5dd981390dcdbfd62f697eeeda85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de66d540cde162eb973be52105412e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a1de66d540cde162eb973be52105412e7">SU_ISort</a> (unsigned long data_size, int *data)</td></tr>
+<tr class="memdesc:a1de66d540cde162eb973be52105412e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort of an array of integer with Insertion Sort algorithm.  <a href="system__utils_8c.html#a1de66d540cde162eb973be52105412e7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1de66d540cde162eb973be52105412e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e0d8766c2c7d0a35f5502d7614bbb26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a7e0d8766c2c7d0a35f5502d7614bbb26">SU_HSort</a> (unsigned long data_size, int *data)</td></tr>
+<tr class="memdesc:a7e0d8766c2c7d0a35f5502d7614bbb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort of an array of integer with Heap Sort algorithm.  <a href="system__utils_8c.html#a7e0d8766c2c7d0a35f5502d7614bbb26">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7e0d8766c2c7d0a35f5502d7614bbb26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a972e5787e077937c95a574fc06f38367"><td class="memItemLeft" align="right" valign="top"><a id="a972e5787e077937c95a574fc06f38367"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system__utils_8c.html#a972e5787e077937c95a574fc06f38367">SU_test</a> ()</td></tr>
+<tr class="memdesc:a972e5787e077937c95a574fc06f38367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test function. Juste print a message on stderr. <br /></td></tr>
+<tr class="separator:a972e5787e077937c95a574fc06f38367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Implementation of usefull function for the system project. </p>
+<dl class="section warning"><dt>Avertissement</dt><dd>You should not modifie the current file. </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a3a7d856af4c621514ac10a02646b2740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7d856af4c621514ac10a02646b2740">&#9670;&nbsp;</a></span>SU_getFileNbLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SU_getFileNbLine </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the number of line of a file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td>Path to the file to process. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Number of line in the file. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The file is not fully loaded in memory. </dd></dl>
+
+</div>
+</div>
+<a id="a7e0d8766c2c7d0a35f5502d7614bbb26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e0d8766c2c7d0a35f5502d7614bbb26">&#9670;&nbsp;</a></span>SU_HSort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_HSort </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>data_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sort of an array of integer with Heap Sort algorithm. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_size</td><td>Number of element in the data array </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>Array of integer to sort. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1de66d540cde162eb973be52105412e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de66d540cde162eb973be52105412e7">&#9670;&nbsp;</a></span>SU_ISort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_ISort </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>data_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sort of an array of integer with Insertion Sort algorithm. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_size</td><td>Number of element in the data array </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>Array of integer to sort. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5cff693748ce864e7db51bc28e38982d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cff693748ce864e7db51bc28e38982d">&#9670;&nbsp;</a></span>SU_loadFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SU_loadFile </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a file of integer (one per line). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td>File to load. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>Pointer to the array that will received the datas. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Number of data loaded. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>No allocation needs to be perform but data must be freed after. </dd></dl>
+
+</div>
+</div>
+<a id="a411a08d168c62b858bfe9067a81b2913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a411a08d168c62b858bfe9067a81b2913">&#9670;&nbsp;</a></span>SU_mergeSortedFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_mergeSortedFiles </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_file1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_file2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Merge two sorted files of integers. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source_file1</td><td>First sorted file. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">source_file2</td><td>Second sorted file. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_target</td><td>File that will received the datas. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Do not load all data in memory. Work on streams. </dd></dl>
+<p>end_file_2</p>
+
+</div>
+</div>
+<a id="a0f0a5dd981390dcdbfd62f697eeeda85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f0a5dd981390dcdbfd62f697eeeda85">&#9670;&nbsp;</a></span>SU_QSort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_QSort </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>data_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sort of an array of integer with Quick Sort algorithm. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_size</td><td>Number of element in the data array </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>Array of integer to sort. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Use a recursive, in place, version of quick sort. </dd></dl>
+
+</div>
+</div>
+<a id="a273efdb8e0af1dff499d05b8e302e01a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a273efdb8e0af1dff499d05b8e302e01a">&#9670;&nbsp;</a></span>SU_randomGeneration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_randomGeneration </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>nb_elems</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fill a file with nb_elems random integers </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_target</td><td>File that will received the datas. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_elems</td><td>Number of data to generate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2929af5c8c7975dab2163c3c633c4656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2929af5c8c7975dab2163c3c633c4656">&#9670;&nbsp;</a></span>SU_saveFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_saveFile </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>data_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a file of integer (one per line). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td>File that will received the datas. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_size</td><td>Number of data to save. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Array of data to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9df7559e336ff98354b7af71a1e75d80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df7559e336ff98354b7af71a1e75d80">&#9670;&nbsp;</a></span>SU_splitFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_splitFile </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>nb_line_per_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>nb_files</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_file1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Split a file in sub files. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source_file</td><td>Path to the file to process. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_line_per_file</td><td>Number of data to put in each subfile (the last file will contains all the remaining data). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_files</td><td>Number of file to create. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">source_file1</td><td>Name of the first subfile. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">...</td><td>Name of the other subfiles. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a773e64d16aaffa7a8466308c0537bba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a773e64d16aaffa7a8466308c0537bba0">&#9670;&nbsp;</a></span>SU_splitFile2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SU_splitFile2 </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long&#160;</td>
+          <td class="paramname"><em>nb_line_per_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long&#160;</td>
+          <td class="paramname"><em>nb_files</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char **&#160;</td>
+          <td class="paramname"><em>file_names</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Split a file in sub files. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source_file</td><td>Path to the file to process. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_line_per_file</td><td>Number of data to put in each subfile (the last file will contains all the remaining data). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_files</td><td>Number of file to create. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_names</td><td>Array containing the subfiles names. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 10 Mai 2021 09:53:55 pour Projet de système d&#39;exploitation 2 : trions ensembles par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
