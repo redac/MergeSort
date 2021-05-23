@@ -83,7 +83,7 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
     projectV0_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
     /* 3 - Merge (two by two) */
-    projectV0_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
+    projectV1_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
 
     /* 4 - Clear */
     for (cpt = 0; cpt < nb_split; ++cpt)
@@ -96,7 +96,7 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
     free(filenames_sort);
 }
 
-void projectV0_sortFiles(unsigned long nb_split, const char **filenames, const char **filenames_sort)
+void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const char **filenames_sort)
 {
 
     unsigned long cpt = 0;
@@ -123,13 +123,13 @@ void projectV0_sortFiles(unsigned long nb_split, const char **filenames, const c
         default:
             break;
         }
-    }
-    for (cpt = 0; cpt < nb_split; ++cpt)
-    {
-        wait(NULL); // Wait for all child processes to finish.
+        for (cpt = 0; cpt < nb_split; ++cpt)
+        {
+            wait(NULL); // Wait for all child processes to finish.
+        }
     }
 
-    void projectV0_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
+    void projectV1_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
     {
 
         int nb_print = 0;
