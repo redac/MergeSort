@@ -79,11 +79,10 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
                   nb_split,
                   (const char **)filenames);
 
-    /* 2 - Sort each file */
+    /* 2 - Sort each file in parallel*/
     projectV0_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
     /* 3 - Merge (two by two) */
-    // TODO: make the sort parallel using an util function
     projectV0_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
 
     /* 4 - Clear */
@@ -103,81 +102,96 @@ void projectV0_sortFiles(unsigned long nb_split, const char **filenames, const c
     unsigned long cpt = 0;
     for (cpt = 0; cpt < nb_split; ++cpt)
     {
-        int *values = NULL;
-        unsigned long nb_elem = SU_loadFile(filenames[cpt], &values);
-        SU_removeFile(filenames[cpt]);
-        fprintf(stderr, "Inner sort %lu: Array of %lu elem by %d\n", cpt, nb_elem, getpid());
+        switch (fork()) // create nb_split processes, each process will sort a sub-file
+        {
+        case 0:
+            int *values = NULL;
+            unsigned long nb_elem = SU_loadFile(filenames[cpt], &values);
+            SU_removeFile(filenames[cpt]);
+            fprintf(stderr, "Inner sort %lu: Array of %lu elem by %d\n", cpt, nb_elem, getpid());
 
-        SORTALGO(nb_elem, values);
+            SORTALGO(nb_elem, values);
 
-        SU_saveFile(filenames_sort[cpt], nb_elem, values);
-        free(values);
+            SU_saveFile(filenames_sort[cpt], nb_elem, values);
+            free(values);
+            break;
+
+        case -1:
+            perror("fork failed");
+            exit(1);
+
+        default:
+            break;
+        }
     }
-}
-
-void projectV0_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
-{
-
-    int nb_print = 0;
-    unsigned long cpt = 0;
-
-    char previous_name[PROJECT_FILENAME_MAX_SIZE];
-    nb_print = snprintf(previous_name,
-                        PROJECT_FILENAME_MAX_SIZE,
-                        "%s", filenames_sort[0]);
-    if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
+    for (cpt = 0; cpt < nb_split; ++cpt)
     {
-        err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
-    }
-
-    char current_name[PROJECT_FILENAME_MAX_SIZE];
-    nb_print = snprintf(current_name,
-                        PROJECT_FILENAME_MAX_SIZE,
-                        "/tmp/tmp_split_%d_merge_%d.txt", getpid(), 0);
-    if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
-    {
-        err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
+        wait(NULL); // Wait for all child processes to finish.
     }
 
-    for (cpt = 1; cpt < nb_split - 1; ++cpt)
+    void projectV0_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
     {
 
-        fprintf(stderr, "Merge sort %lu : %s + %s -> %s \n",
-                cpt,
-                previous_name,
-                filenames_sort[cpt],
-                current_name);
-        SU_mergeSortedFiles(previous_name,
-                            filenames_sort[cpt],
-                            current_name);
-        SU_removeFile(previous_name);
-        SU_removeFile(filenames_sort[cpt]);
+        int nb_print = 0;
+        unsigned long cpt = 0;
 
+        char previous_name[PROJECT_FILENAME_MAX_SIZE];
         nb_print = snprintf(previous_name,
                             PROJECT_FILENAME_MAX_SIZE,
-                            "%s", current_name);
+                            "%s", filenames_sort[0]);
         if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
         {
             err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
         }
 
+        char current_name[PROJECT_FILENAME_MAX_SIZE];
         nb_print = snprintf(current_name,
                             PROJECT_FILENAME_MAX_SIZE,
-                            "/tmp/tmp_split_%d_merge_%lu.txt", getpid(), cpt);
+                            "/tmp/tmp_split_%d_merge_%d.txt", getpid(), 0);
         if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
         {
             err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
         }
-    }
 
-    /* Last merge */
-    fprintf(stderr, "Last merge sort : %s + %s -> %s \n",
-            previous_name,
-            filenames_sort[nb_split - 1],
-            o_file);
-    SU_mergeSortedFiles(previous_name,
-                        filenames_sort[nb_split - 1],
-                        o_file);
-    SU_removeFile(previous_name);
-    SU_removeFile(filenames_sort[nb_split - 1]);
-}
+        for (cpt = 1; cpt < nb_split - 1; ++cpt)
+        {
+
+            fprintf(stderr, "Merge sort %lu : %s + %s -> %s \n",
+                    cpt,
+                    previous_name,
+                    filenames_sort[cpt],
+                    current_name);
+            SU_mergeSortedFiles(previous_name,
+                                filenames_sort[cpt],
+                                current_name);
+            SU_removeFile(previous_name);
+            SU_removeFile(filenames_sort[cpt]);
+
+            nb_print = snprintf(previous_name,
+                                PROJECT_FILENAME_MAX_SIZE,
+                                "%s", current_name);
+            if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
+            {
+                err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
+            }
+
+            nb_print = snprintf(current_name,
+                                PROJECT_FILENAME_MAX_SIZE,
+                                "/tmp/tmp_split_%d_merge_%lu.txt", getpid(), cpt);
+            if (nb_print >= PROJECT_FILENAME_MAX_SIZE)
+            {
+                err(1, "Out of buffer (%s:%d)", __FILE__, __LINE__);
+            }
+        }
+
+        /* Last merge */
+        fprintf(stderr, "Last merge sort : %s + %s -> %s \n",
+                previous_name,
+                filenames_sort[nb_split - 1],
+                o_file);
+        SU_mergeSortedFiles(previous_name,
+                            filenames_sort[nb_split - 1],
+                            o_file);
+        SU_removeFile(previous_name);
+        SU_removeFile(filenames_sort[nb_split - 1]);
+    }
