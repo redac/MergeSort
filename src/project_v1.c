@@ -129,6 +129,7 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
         wait(NULL); /* wait for all child processes to finish. */
     }
 }
+
 void projectV1_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
 {
 
