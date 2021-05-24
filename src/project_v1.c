@@ -80,7 +80,7 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
                   (const char **)filenames);
 
     /* 2 - Sort each file in parallel*/
-    projectV0_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
+    projectV1_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
     /* 3 - Merge (two by two) */
     projectV1_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
@@ -105,6 +105,7 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
         switch (fork()) /* create nb_split processes, each process will sort a sub-file */
         {
         case 0:
+        {
             int *values = NULL;
             unsigned long nb_elem = SU_loadFile(filenames[cpt], &values);
             SU_removeFile(filenames[cpt]);
@@ -115,10 +116,13 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
             SU_saveFile(filenames_sort[cpt], nb_elem, values);
             free(values);
             break;
+        }
 
         case -1:
+        {
             perror("fork failed");
             exit(1);
+        }
 
         default:
             break;
@@ -126,7 +130,7 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
     }
     for (cpt = 0; cpt < nb_split; ++cpt)
     {
-        wait(NULL); // Wait for all child processes to finish.
+        wait(NULL); /* wait for all child processes to finish. */
     }
 }
 void projectV1_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
