@@ -98,7 +98,6 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
 
 void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const char **filenames_sort)
 {
-
     unsigned long cpt = 0;
     for (cpt = 0; cpt < nb_split; ++cpt)
     {
@@ -110,11 +109,10 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
             unsigned long nb_elem = SU_loadFile(filenames[cpt], &values);
             SU_removeFile(filenames[cpt]);
             fprintf(stderr, "Inner sort %lu: Array of %lu elem by %d\n", cpt, nb_elem, getpid());
-
             SORTALGO(nb_elem, values);
-
             SU_saveFile(filenames_sort[cpt], nb_elem, values);
             free(values);
+            exit(0);
             break;
         }
 
@@ -122,17 +120,13 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
         {
             perror("fork failed");
             exit(1);
+            break;
         }
-
-        default:
-        {
-            for (cpt = 0; cpt < nb_split; ++cpt)
-            {
-                wait(NULL); /* wait for all child processes to finish. */
-            }
         }
-        break;
-        }
+    }
+    for (cpt = 0; cpt < nb_split; ++cpt)
+    {
+        wait(NULL); /* wait for all child processes to finish. */
     }
 }
 void projectV1_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
