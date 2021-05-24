@@ -79,7 +79,7 @@ void projectV1(const char *i_file, const char *o_file, unsigned long nb_split)
                   nb_split,
                   (const char **)filenames);
 
-    /* 2 - Sort each file in parallel*/
+    /* 2 - Sort each sub-file in parallel */
     projectV1_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
     /* 3 - Merge (two by two) */
@@ -125,12 +125,14 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
         }
 
         default:
-            break;
+        {
+            for (cpt = 0; cpt < nb_split; ++cpt)
+            {
+                wait(NULL); /* wait for all child processes to finish. */
+            }
         }
-    }
-    for (cpt = 0; cpt < nb_split; ++cpt)
-    {
-        wait(NULL); /* wait for all child processes to finish. */
+        break;
+        }
     }
 }
 void projectV1_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
