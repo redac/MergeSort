@@ -47,6 +47,7 @@ void usage()
   fprintf(stderr, "\t projectV0	    \t V0 of the project         	  \n");
   fprintf(stderr, "\t projectV1	    \t V1 of the project         	  \n");
   fprintf(stderr, "\t projectV2	    \t V2 of the project         	  \n");
+  fprintf(stderr, "\t projectV3	    \t V3 of the project         	  \n");
   fprintf(stderr, "\n");
   fprintf(stderr, "Examples:								    \n");
   fprintf(stderr, "./bin/project -m test						    \n");
