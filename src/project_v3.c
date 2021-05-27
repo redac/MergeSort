@@ -1,10 +1,10 @@
 /**
  * @file 
- * @brief Implementation of the V2 of the system project.
+ * @brief Implementation of the V3 of the system project.
  * @warning You should not modify the current file.
  */
 
-#include "project_v2.h"
+#include "project_v3.h"
 
 /**
  * @brief Maximum length (in character) for a file name.
@@ -19,7 +19,7 @@
 #define SORTALGO(nb_elem, values) SU_QSort(nb_elem, values)
 
 /**********************************/
-void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
+void projectV3(const char *i_file, const char *o_file, unsigned long nb_split)
 {
 
     /* Get number of line to sort */
@@ -79,10 +79,10 @@ void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
                   (const char **)filenames);
 
     /* 2 - Sort each file in parallel */
-    projectV2_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
+    projectV3_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
     /* 3 - Merge (two by two) by two processes in parallel */
-    projectV2_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
+    projectV3_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
 
     /* 4 - Clear */
     for (cpt = 0; cpt < nb_split; ++cpt)
@@ -95,7 +95,7 @@ void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
     free(filenames_sort);
 }
 
-void projectV2_sortFiles(unsigned long nb_split, const char **filenames, const char **filenames_sort)
+void projectV3_sortFiles(unsigned long nb_split, const char **filenames, const char **filenames_sort)
 {
 
     unsigned long cpt = 0;
@@ -133,7 +133,7 @@ void projectV2_sortFiles(unsigned long nb_split, const char **filenames, const c
         wait(NULL); /* wait for all child processes to finish. */
     }
 }
-void projectV2_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
+void projectV3_combMerge(unsigned long nb_split, const char **filenames_sort, const char *o_file)
 {
 
     int nb_print = 0;

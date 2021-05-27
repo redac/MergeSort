@@ -4,32 +4,41 @@
  * @todo Change the SU_removeFile to use exec instead of system.
  */
 
-
 #include "system_utils.h"
 
 /**
  * @brief Maximum length (in character) for a command line.
  **/
-#define SU_MAXLINESIZE (1024*8) 
+#define SU_MAXLINESIZE (1024 * 8)
 
 /********************** File managment ************/
 
-void SU_removeFile(const char * file){
-  int status; 
-  pid_t PID = fork();
-  if( PID == -1){
-    // Fork failed.
+void SU_removeFile(const char *file)
+{
+  switch (fork())
+  {
+  case 0:
+  { /* remove the file using exec */
+    int resSys = execlp("rm", "rm", file, NULL);
+    assert(resSys != -1);
+    exit(EXIT_SUCCESS);
+    break;
+  }
+
+  case -1:
+  { /* fork failed */
+    perror("fork failed");
     exit(EXIT_FAILURE);
+    break;
   }
-  else if ( PID == 0 )
+
+  default:
   {
-    // Remove the file.
-    execl("usr/bin/bash", "bash", "-c", strncat("rm", file, SU_MAXLINESIZE), (char *) NULL);
+    wait(NULL); /* wait for the child process */
+    break;
   }
-  else
-  {
-    waitpid(PID, &status, 0);
   }
+
   /* 
   VERY Dirty tmp version 
   char buffer[SU_MAXLINESIZE];

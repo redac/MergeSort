@@ -112,14 +112,14 @@ void projectV1_sortFiles(unsigned long nb_split, const char **filenames, const c
             SORTALGO(nb_elem, values);
             SU_saveFile(filenames_sort[cpt], nb_elem, values);
             free(values);
-            exit(0);
+            exit(EXIT_SUCCESS);
             break;
         }
 
         case -1:
         {
             perror("fork failed");
-            exit(1);
+            exit(EXIT_FAILURE);
             break;
         }
         }
