@@ -27,7 +27,7 @@ void projectV3(const char *i_file, const char *o_file, unsigned long nb_split)
     unsigned long nb_lines = SU_getFileNbLine(i_file);
     unsigned long nb_lines_per_files = nb_lines / (unsigned long)nb_split;
     fprintf(stderr,
-            "Projet2 version with %lu split of %lu lines\n",
+            "Projet3 version with %lu split of %lu lines\n",
             nb_split,
             nb_lines_per_files);
 

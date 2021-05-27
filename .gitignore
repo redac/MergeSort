@@ -53,6 +53,7 @@ dkms.conf
 
 # Doxygen
 
+doc/
 *~
 .*sw?
 \#*
@@ -85,3 +86,6 @@ tags
 
 # Local History for Visual Studio Code
 .history/
+
+# cmake
+/bin
