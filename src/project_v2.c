@@ -78,10 +78,10 @@ void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
                   nb_split,
                   (const char **)filenames);
 
-    /* 2 - Sort each file in parallel*/
+    /* 2 - Sort each file in parallel */
     projectV2_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
-    /* 3 - Merge (two by two) */
+    /* 3 - Merge (two by two) by two processes in parallel */
     projectV2_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
 
     /* 4 - Clear */
@@ -139,9 +139,9 @@ void projectV2_combMerge(unsigned long nb_split, const char **filenames_sort, co
     int nb_print = 0;
     unsigned long cpt = 0;
     char previous_name[PROJECT_FILENAME_MAX_SIZE];
-    switch (fork())
+    switch (fork()) /* create a child process, which will merge half the sub-files */
     {
-    case 0: /* child process code */
+    case 0: /* child process code: merge half the sub-files */
     {
         nb_print = snprintf(previous_name,
                             PROJECT_FILENAME_MAX_SIZE,
@@ -202,7 +202,7 @@ void projectV2_combMerge(unsigned long nb_split, const char **filenames_sort, co
         break;
     }
 
-    default: /* parent process code */
+    default: /* parent process code: merge the other half */
     {
         nb_print = snprintf(previous_name,
                             PROJECT_FILENAME_MAX_SIZE,
@@ -262,7 +262,7 @@ void projectV2_combMerge(unsigned long nb_split, const char **filenames_sort, co
     }
     }
     wait(NULL);
-    /* Last merge */
+    /* Last merge of the parent and child files */
     fprintf(stderr, "Last merge sort : %s + %s -> %s \n",
             "/tmp/tmp_split_merge_fils.txt",
             "/tmp/tmp_split_merge_pere.txt",
