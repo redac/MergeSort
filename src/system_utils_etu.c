@@ -27,7 +27,7 @@ void SU_removeFile(const char *file)
 
   case -1:
   { /* fork failed */
-    perror("fork failed");
+    fprintf(stderr, "fork failed\n");
     exit(EXIT_FAILURE);
     break;
   }
