@@ -88,4 +88,7 @@ tags
 .history/
 
 # cmake
-/bin
+/bin/*
+
+# tests
+/tests/*

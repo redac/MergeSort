@@ -120,7 +120,7 @@ void projectV2_sortFiles(unsigned long nb_split, const char **filenames, const c
 
         case -1:
         {
-            fprintf(stderr, "fork failed\n");
+            perror("fork failed");
             exit(EXIT_FAILURE);
         }
 
