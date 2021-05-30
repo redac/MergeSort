@@ -10,6 +10,7 @@
 #include "project_v1.h"
 #include "project_v2.h"
 #include "project_v3.h"
+#include "project_v4.h"
 
 /**
  * @brief Maximum length (in character) for a file name.
@@ -48,6 +49,7 @@ void usage()
   fprintf(stderr, "\t projectV1	    \t V1 of the project         	  \n");
   fprintf(stderr, "\t projectV2	    \t V2 of the project         	  \n");
   fprintf(stderr, "\t projectV3	    \t V3 of the project         	  \n");
+  fprintf(stderr, "\t projectV4	    \t V4 of the project         	  \n");
   fprintf(stderr, "\n");
   fprintf(stderr, "Examples:								    \n");
   fprintf(stderr, "./bin/project -m test						    \n");
@@ -83,6 +85,7 @@ int main(int argc, char **argv)
   int mode_projectV1 = 0;
   int mode_projectV2 = 0;
   int mode_projectV3 = 0;
+  int mode_projectV4 = 0;
   int mode_demoSortSplit = 0;
   int mode_lineCount = 0;
   int mode_generation = 0;
@@ -188,6 +191,16 @@ int main(int argc, char **argv)
       errflg++;
     }
   }
+  else if (strcmp(mode, "projectV4") == 0)
+  {
+    mode_projectV4 = 1;
+    /* need at least in and out file */
+    if (strcmp(i_file, "") == 0 || strcmp(o_file, "") == 0)
+    {
+      fprintf(stderr, "Missing parameters: need an output and an input file.\n");
+      errflg++;
+    }
+  }
   else if (strcmp(mode, "test") == 0)
   {
     mode_test = 1;
@@ -248,28 +261,33 @@ int main(int argc, char **argv)
   }
   else if (mode_demoSort)
   {
-    /* Mode demo sort split*/
+    /* Mode demo sort split */
     demoSort(i_file, o_file);
   }
   else if (mode_projectV0)
   {
-    /* Mode demo sort split*/
+    /* Mode version 0 */
     projectV0(i_file, o_file, nb_split);
   }
   else if (mode_projectV1)
   {
-    /* Mode demo sort split*/
+    /* Mode version 1 */
     projectV1(i_file, o_file, nb_split);
   }
   else if (mode_projectV2)
   {
-    /* Mode demo sort split */
+    /* Mode version 2 */
     projectV2(i_file, o_file, nb_split);
   }
   else if (mode_projectV3)
   {
-    /* Mode demo sort split */
+    /* Mode version 3 */
     projectV3(i_file, o_file, nb_split);
+  }
+  else if (mode_projectV4)
+  {
+    /* Mode version 4 */
+    projectV4(i_file, o_file, nb_split);
   }
 
   /* End */
