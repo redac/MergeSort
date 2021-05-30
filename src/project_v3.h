@@ -44,4 +44,15 @@ void projectV3_combMerge(unsigned long nb_split,
                          const char **filenames_sort,
                          const char *o_file);
 
+/**
+ * @brief Function to sort-merge a list of sorted subfiles using a tournament tree.
+ * @param[in] nb_split Index of the subfile in the array of files.
+ * @param[in] filenames_sort Array of sorted file names.
+ * @param[in] o_file Nome of the output file where sorted data are written.
+ * @note It work in stream. Files are not fully loaded in memory.
+ **/
+void projectV3_treeMerge(unsigned long nb_split,
+                         const char **filenames_sort,
+                         const char *o_file);
+
 #endif
