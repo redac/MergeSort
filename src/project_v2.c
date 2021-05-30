@@ -5,6 +5,7 @@
  */
 
 #include "project_v2.h"
+#include "mesures.h"
 
 /**
  * @brief Maximum length (in character) for a file name.
@@ -22,12 +23,18 @@
 void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
 {
 
+    long int temps_cumul;
+    long int usec;
+    long int msec;
+    long int sec;
+
     /* Get number of line to sort */
+    demarrer_chrono();
     int nb_print = 0;
     unsigned long nb_lines = SU_getFileNbLine(i_file);
     unsigned long nb_lines_per_files = nb_lines / (unsigned long)nb_split;
     fprintf(stderr,
-            "Projet2 version with %lu split of %lu lines\n",
+            "Projet1 version with %lu split of %lu lines\n",
             nb_split,
             nb_lines_per_files);
 
@@ -45,7 +52,7 @@ void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
         return;
     }
 
-    /* 1 - Split the source file */
+    /* 1 - Spit the source file */
 
     /* 1.1 - Create a vector of target filenames for the split */
     char **filenames = (char **)malloc(sizeof(char *) * (size_t)nb_split);
@@ -77,12 +84,39 @@ void projectV2(const char *i_file, const char *o_file, unsigned long nb_split)
                   nb_lines_per_files,
                   nb_split,
                   (const char **)filenames);
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+
+    printf("Split time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
 
     /* 2 - Sort each file in parallel */
+    demarrer_chrono();
+
     projectV2_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
 
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+
+    printf("Sort time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
+
     /* 3 - Merge (two by two) by two processes in parallel */
+    demarrer_chrono();
+
     projectV2_combMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
+
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+
+    printf("Merge time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
 
     /* 4 - Clear */
     for (cpt = 0; cpt < nb_split; ++cpt)

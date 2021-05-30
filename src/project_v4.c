@@ -5,6 +5,7 @@
  */
 
 #include "project_v4.h"
+#include "mesures.h"
 
 /**
  * @brief Maximum length (in character) for a file name.
@@ -21,8 +22,13 @@
 /**********************************/
 void projectV4(const char *i_file, const char *o_file, unsigned long nb_split)
 {
+    long int temps_cumul;
+    long int usec;
+    long int msec;
+    long int sec;
 
     /* Get number of line to sort */
+    demarrer_chrono();
     int nb_print = 0;
     unsigned long nb_lines = SU_getFileNbLine(i_file);
     unsigned long nb_lines_per_files = nb_lines / (unsigned long)nb_split;
@@ -77,12 +83,34 @@ void projectV4(const char *i_file, const char *o_file, unsigned long nb_split)
                   nb_lines_per_files,
                   nb_split,
                   (const char **)filenames);
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+    printf("Split time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
 
     /* 2 - Sort each file in parallel */
+    demarrer_chrono();
     projectV4_sortFiles(nb_split, (const char **)filenames, (const char **)filenames_sort);
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+
+    printf("Sort time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
 
     /* 3 - Merge (two by two) using a tournament tree */
+    demarrer_chrono();
     projectV4_treeMerge(nb_split, (const char **)filenames_sort, (const char *)o_file);
+    arreter_chrono();
+    temps_cumul = temps_chrono();
+    usec = temps_cumul % 1000;
+    msec = (temps_cumul / 1000) % 1000;
+    sec = temps_cumul / 1000000;
+
+    printf("Merge time : (s:ms:us) %ld:%ld:%ld\n", sec, msec, usec);
 
     /* 4 - Clear */
     for (cpt = 0; cpt < nb_split; ++cpt)
@@ -283,7 +311,7 @@ void projectV4_treeMerge(unsigned long nb_split, const char **filenames_sort, co
     char child_name[PROJECT_FILENAME_MAX_SIZE];
     char parent_name[PROJECT_FILENAME_MAX_SIZE];
 
-    if (nb_split < 4) /* Base Case: the merge can be done using one process */
+    if (nb_split < 9) /* Base Case: the merge can be done using one process */
     {
         projectV4_combMerge(nb_split, filenames_sort, o_file); /* Use the v2 sort-merge algorithm (using parallelization) */
     }
